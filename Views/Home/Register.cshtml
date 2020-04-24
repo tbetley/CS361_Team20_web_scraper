@@ -1,6 +1,34 @@
 ﻿@{
     ViewData["Title"] = "Register";
 }
+
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to register.</p>
+<br />
+
+<br />
+
+<div id="register-form">
+    <form>
+        <h2 class="h3 mb-3 font-weight-normal text-left">Register</h2>
+    </form>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">email</label>
+            <input type="email" class="form-control" id="inputEmail4">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">password</label>
+            <input type="password" class="form-control" id="inputPassword4">
+        </div>
+    </div>
+    <br />
+    <button class="btn btn-primary" type="submit">Register</button>
+    <br />
+    <hr />
+    <br />
+    <h4 class="font-weight-normal text-left">Looking to sign in?</h4>
+    <button class="btn btn-success" type="button">Log In</button>
+</div>
