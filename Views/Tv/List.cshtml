@@ -1,0 +1,39 @@
+﻿@model web_scraper.ViewModels.TvListViewModel
+
+<h1>@Model.CurrentCategory</h1>
+
+<table>
+    <tr>
+        <th>
+            Brand
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Short Description
+        </th>
+    </tr>
+    
+    @foreach (var tv in Model.Tv)
+    {
+        <tr>
+            <td>
+                @tv.Brand
+            </td>
+            <td>
+                @tv.Model
+            </td>
+            <td>
+                @tv.Price
+            </td>
+            <td>
+                @tv.ShortDescription
+            </td>
+        </tr>
+    }
+</table>
+

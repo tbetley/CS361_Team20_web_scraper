@@ -32,6 +32,10 @@ namespace web_scraper
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<ITvRepository, TvRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
