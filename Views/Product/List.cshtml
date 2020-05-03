@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<web_scraper.Models.Product> 
+@{
+}
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+        </tr>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.name</td>
+                <td>@product.price.ToString("c")</td>
+                <td>@product.Category.name</td>
+            </tr>
+        }
+    </table>
