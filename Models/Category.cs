@@ -7,8 +7,10 @@ namespace web_scraper.Models
 {
     public class Category
     {
-        public int id { get; set; }
+        public int CategoryID { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
+
+        public IEnumerable<String> Urls { get; set; }
     }
 }

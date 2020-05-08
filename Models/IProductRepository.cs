@@ -10,5 +10,6 @@ namespace web_scraper.Models
         IEnumerable<Product> allProducts { get; }
 
         Product getProductById(int productID);
+
     }
 }

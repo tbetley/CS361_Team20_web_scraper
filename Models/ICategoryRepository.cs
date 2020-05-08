@@ -8,5 +8,7 @@ namespace web_scraper.Models
     public interface ICategoryRepository
     {
         IEnumerable<Category> allCategories { get; }
+
+        Category getCategoryById(int id);
     }
 }

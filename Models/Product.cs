@@ -7,16 +7,18 @@ namespace web_scraper.Models
 {
     public class Product
     {
-        public int id { get; set; }
+        public int ProductID { get; set; }
 
-        public string manufacturer { get; set; }
+        public string Name { get; set; }
 
-        public string model { get; set; }
+        public string Manufacturer { get; set; }
 
-        public string name { get; set; }
+        public string Model { get; set; }
 
-        public decimal price { get; set; }
+        public decimal Price { get; set; }
 
-        public Category Category { get; set; }
+        public string ImageUrl { get; set; }
+
+        public string SiteUrl { get; set; }
     }
 }

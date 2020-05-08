@@ -1,22 +1,41 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model IEnumerable<web_scraper.Models.Product> 
+@model web_scraper.ViewModels.ProductListViewModel
 @{
 }
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Category</th>
-        </tr>
-        @foreach (var product in Model)
+
+<form asp-controller="Product" asp-action="List" method="get">
+    <label>Select a category:</label>
+    <select name="category">
+        @foreach (var category in Model.Categories)
         {
-            <tr>
-                <td>@product.name</td>
-                <td>@product.price.ToString("c")</td>
-                <td>@product.Category.name</td>
-            </tr>
+            <option value=@category.CategoryID>@category.Name</option>
         }
-    </table>
+    </select>
+
+    <button type="submit">Go</button>
+</form>
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Price</th>
+        <th>Manufacturer</th>
+        <th>Url</th>
+    </tr>
+    @foreach (var product in Model.Products)
+    {
+        <tr>
+            <td>@product.Name</td>
+            <td>@product.Model</td>
+            <td>@product.Price.ToString("c")</td>
+            <td>@product.Manufacturer</td>
+            <td>@product.SiteUrl</td>
+        </tr>
+    }
+</table>
