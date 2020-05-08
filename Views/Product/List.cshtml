@@ -8,12 +8,8 @@
 
 <form asp-controller="Product" asp-action="List" method="get">
     <label>Select a category:</label>
-    <select name="category">
-        @foreach (var category in Model.Categories)
-        {
-            <option value=@category.CategoryID>@category.Name</option>
-        }
-    </select>
+
+    @Html.DropDownListFor(m => m.categorySelected, Model.CategoryListItems, null, new { @class = "form-control"})
 
     <button type="submit">Go</button>
 </form>

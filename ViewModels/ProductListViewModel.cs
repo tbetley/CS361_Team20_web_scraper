@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace web_scraper.ViewModels
     {
         public IEnumerable<Product> Products { get; set; }
 
-        public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<SelectListItem> CategoryListItems { get; set; }
+
+        public string categorySelected { get; set; }
     }
 }
