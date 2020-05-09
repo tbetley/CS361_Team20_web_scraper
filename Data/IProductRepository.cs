@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace web_scraper.Data
 {
-    public interface ITvRepository
+    public interface IProductRepository
     {
-        IEnumerable<Tv> AllTv { get; }
+        IEnumerable<Product> AllProducts { get; }
 
-        Tv GetTvById(int tvId);
+        Product GetProductById(int tvId);
     }
 }

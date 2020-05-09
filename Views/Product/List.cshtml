@@ -1,4 +1,4 @@
-﻿@model web_scraper.ViewModels.TvListViewModel
+﻿@model web_scraper.ViewModels.ProductListViewModel
 
 <h1>@Model.CurrentCategory</h1>
 
@@ -18,20 +18,20 @@
         </th>
     </tr>
     
-    @foreach (var tv in Model.Tv)
+    @foreach (var product in Model.Products)
     {
         <tr>
             <td>
-                @tv.Brand
+                @product.Brand
             </td>
             <td>
-                @tv.Model
+                @product.Model
             </td>
             <td>
-                @tv.Price
+                @product.Price
             </td>
             <td>
-                @tv.ShortDescription
+                @product.ShortDescription
             </td>
         </tr>
     }

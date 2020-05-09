@@ -11,21 +11,21 @@ using web_scraper.ViewModels;
 
 namespace web_scraper.Controllers
 {
-    public class TvController : Controller
+    public class ProductController : Controller
     {
-        private readonly ITvRepository _tvRepository;
+        private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
 
-        public TvController(ITvRepository tvRepository, ICategoryRepository categoryRepository)
+        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
-            _tvRepository = tvRepository;
+            _productRepository = productRepository;
             _categoryRepository = categoryRepository;
         }
 
         public ViewResult List()
         {
-            TvListViewModel tvListViewModel = new TvListViewModel();
-            tvListViewModel.Tv = _tvRepository.AllTv;
+            ProductListViewModel tvListViewModel = new ProductListViewModel();
+            tvListViewModel.Products = _productRepository.AllProducts;
 
             return View(tvListViewModel);
         }

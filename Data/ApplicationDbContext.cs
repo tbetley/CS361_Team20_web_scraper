@@ -14,7 +14,7 @@ namespace web_scraper.Data
         }
 
 
-        public DbSet<Tv> Tv { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,10 +25,13 @@ namespace web_scraper.Data
             modelBuilder.Entity<Category>().HasData(new Category
                 {CategoryId = 1, CategoryName = "TV", Description = "Televisions"});
 
+            modelBuilder.Entity<Category>().HasData(new Category
+                { CategoryId = 2, CategoryName = "Accessory", Description = "Accessories" });
+
             // seed Tv
-            modelBuilder.Entity<Tv>().HasData(new Tv
+            modelBuilder.Entity<Product>().HasData(new Product
             {
-                TvId = 1,
+                ProductId = 1,
                 Brand = "Samsung",
                 Model = "UN65TU8000FXZA",
                 ShortDescription = "Samsung 65 inch TU 8000",
@@ -39,9 +42,9 @@ namespace web_scraper.Data
                 CategoryId = 1
             });
 
-            modelBuilder.Entity<Tv>().HasData(new Tv
+            modelBuilder.Entity<Product>().HasData(new Product
             {
-                TvId = 2,
+                ProductId = 2,
                 Brand = "TCL",
                 Model = "55S425",
                 ShortDescription = "TCL 55 inch 4 Series",
@@ -50,6 +53,19 @@ namespace web_scraper.Data
                 ImageUrl = "",
                 ImageThumbnailUrl = "",
                 CategoryId = 1
+            });
+
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                ProductId = 3,
+                Brand = "Logitech",
+                Model = "Harmony 950",
+                ShortDescription = "Logitech Harmony Remote 950",
+                LongDescription = "Logitech Harmony Remote 950 Advanced Universal Remote",
+                Price = 249.99M,
+                ImageUrl = "",
+                ImageThumbnailUrl = "",
+                CategoryId = 2
             });
         }
     }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web_scraper.Data;
 
 namespace web_scraper.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200509051144_InitialMigrationProduct")]
+    partial class InitialMigrationProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,12 +244,6 @@ namespace web_scraper.Data.Migrations
                             CategoryId = 1,
                             CategoryName = "TV",
                             Description = "Televisions"
-                        },
-                        new
-                        {
-                            CategoryId = 2,
-                            CategoryName = "Accessory",
-                            Description = "Accessories"
                         });
                 });
 
@@ -292,7 +288,7 @@ namespace web_scraper.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Tv");
 
                     b.HasData(
                         new
@@ -318,18 +314,6 @@ namespace web_scraper.Data.Migrations
                             Model = "55S425",
                             Price = 279.99m,
                             ShortDescription = "TCL 55 inch 4 Series"
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            Brand = "Logitech",
-                            CategoryId = 2,
-                            ImageThumbnailUrl = "",
-                            ImageUrl = "",
-                            LongDescription = "Logitech Harmony Remote 950 Advanced Universal Remote",
-                            Model = "Harmony 950",
-                            Price = 249.99m,
-                            ShortDescription = "Logitech Harmony Remote 950"
                         });
                 });
 
@@ -387,7 +371,7 @@ namespace web_scraper.Data.Migrations
             modelBuilder.Entity("web_scraper.Data.Product", b =>
                 {
                     b.HasOne("web_scraper.Data.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany("Tv")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

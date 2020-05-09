@@ -14,6 +14,6 @@ namespace web_scraper.Data
 
         public string Description { get; set; }
 
-        public List<Tv> Tv { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

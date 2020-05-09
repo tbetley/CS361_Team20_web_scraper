@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace web_scraper.Data
 {
-    public class Tv
+    public class Product
     {
-        public int TvId { get; set; }
+        public int ProductId { get; set; }
 
+        public string ProductName { get; set; }
+        
         public string Brand { get; set; }
 
         public string Model { get; set; }
@@ -23,6 +25,8 @@ namespace web_scraper.Data
 
         public string ImageThumbnailUrl { get; set; }
 
+        public string SiteUrl { get; set; }
+        
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }

@@ -6,9 +6,9 @@ using web_scraper.Data;
 
 namespace web_scraper.ViewModels
 {
-    public class TvListViewModel
+    public class ProductListViewModel
     {
-        public IEnumerable<Tv> Tv { get; set; }
+        public IEnumerable<Product> Products { get; set; }
         
         public string CurrentCategory { get; set; }
     }

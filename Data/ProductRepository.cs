@@ -7,26 +7,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace web_scraper.Data
 {
-    public class TvRepository : ITvRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public TvRepository(ApplicationDbContext applicationDbContext)
+        public ProductRepository(ApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
         }
 
-        public IEnumerable<Tv> AllTv
+        public IEnumerable<Product> AllProducts
         {
             get
             {
-                return _applicationDbContext.Tv.Include(c => c.Category);
+                return _applicationDbContext.Products.Include(c => c.Category);
             }
         }
 
-        public Tv GetTvById(int tvId)
+        public Product GetProductById(int productId)
         {
-            return _applicationDbContext.Tv.FirstOrDefault(p => p.TvId == tvId);
+            return _applicationDbContext.Products.FirstOrDefault(p => p.ProductId == productId);
         }
     }
 }

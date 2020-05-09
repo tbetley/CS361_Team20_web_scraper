@@ -33,7 +33,7 @@ namespace web_scraper
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddScoped<ITvRepository, TvRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             
             services.AddControllersWithViews();
