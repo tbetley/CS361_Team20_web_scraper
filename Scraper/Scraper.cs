@@ -22,7 +22,7 @@ namespace web_scraper.Scraper
                         ProductID = idCounter,
                         Name = String.Format("product{0}", idCounter),
                         Model = "anything",
-                        Manufacturer = "Maker Company",
+                        Brand = "Maker Company",
                         Price = (decimal)(idCounter + 0.99),
                         ImageUrl = String.Format("{0}/pic.png", url),
                         SiteUrl = url

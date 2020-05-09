@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using web_scraper.Models;
 
-namespace web_scraper.Models
+namespace web_scraper.Data
 {
     public class MockCategoryRepository : ICategoryRepository
     {
         public IEnumerable<Category> allCategories =>
             new List<Category>
             {
-                new Category{CategoryID=1, Name="TVs", Urls =
+                new Category{CategoryId=1, Name="TVs", Urls =
                     new List<String>()
                         {
                             "bigtvs.com",
@@ -18,7 +19,7 @@ namespace web_scraper.Models
                             "uglytvs.com"
                         }
                     },
-                new Category{CategoryID=2, Name="Laptops", Urls =
+                new Category{CategoryId=2, Name="Laptops", Urls =
                     new List<String>()
                         {
                             "computers.com",
@@ -26,7 +27,7 @@ namespace web_scraper.Models
                             "bugdetelectronics.com"
                         }
                     },
-                new Category{CategoryID=3, Name="Desktops", Urls =
+                new Category{CategoryId=3, Name="Desktops", Urls =
                     new List<String>()
                         {
                             "computers.com",
@@ -38,7 +39,7 @@ namespace web_scraper.Models
 
         public Category getCategoryById(int id)
         {
-            return allCategories.FirstOrDefault(c => c.CategoryID == id);
+            return allCategories.FirstOrDefault(c => c.CategoryId == id);
         }
     }
 }

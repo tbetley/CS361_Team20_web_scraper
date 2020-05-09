@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using web_scraper.Data;
 using web_scraper.Models;
 using web_scraper.ViewModels;
 
@@ -61,7 +62,7 @@ namespace web_scraper.Controllers
             {
                 selectList.Add(new SelectListItem
                 {
-                    Value = cat.CategoryID.ToString(),
+                    Value = cat.CategoryId.ToString(),
                     Text = cat.Name
                 });
             }
