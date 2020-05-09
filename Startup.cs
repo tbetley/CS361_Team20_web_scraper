@@ -37,6 +37,9 @@ namespace web_scraper
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddScoped<IProductRepository, MockProductRepository>();
+            services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+
             services.Configure<IdentityOptions>(options =>
             {
                 // password settings
