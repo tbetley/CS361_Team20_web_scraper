@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web_scraper.Data;
 
 namespace web_scraper.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200503005846_InitialMigrationTv")]
+    partial class InitialMigrationTv
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,18 +244,12 @@ namespace web_scraper.Data.Migrations
                             CategoryId = 1,
                             CategoryName = "TV",
                             Description = "Televisions"
-                        },
-                        new
-                        {
-                            CategoryId = 2,
-                            CategoryName = "Accessory",
-                            Description = "Accessories"
                         });
                 });
 
-            modelBuilder.Entity("web_scraper.Data.Product", b =>
+            modelBuilder.Entity("web_scraper.Data.Tv", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("TvId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -279,25 +275,19 @@ namespace web_scraper.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ShortDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SiteUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ProductId");
+                    b.HasKey("TvId");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Tv");
 
                     b.HasData(
                         new
                         {
-                            ProductId = 1,
+                            TvId = 1,
                             Brand = "Samsung",
                             CategoryId = 1,
                             ImageThumbnailUrl = "",
@@ -309,7 +299,7 @@ namespace web_scraper.Data.Migrations
                         },
                         new
                         {
-                            ProductId = 2,
+                            TvId = 2,
                             Brand = "TCL",
                             CategoryId = 1,
                             ImageThumbnailUrl = "",
@@ -318,18 +308,6 @@ namespace web_scraper.Data.Migrations
                             Model = "55S425",
                             Price = 279.99m,
                             ShortDescription = "TCL 55 inch 4 Series"
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            Brand = "Logitech",
-                            CategoryId = 2,
-                            ImageThumbnailUrl = "",
-                            ImageUrl = "",
-                            LongDescription = "Logitech Harmony Remote 950 Advanced Universal Remote",
-                            Model = "Harmony 950",
-                            Price = 249.99m,
-                            ShortDescription = "Logitech Harmony Remote 950"
                         });
                 });
 
@@ -384,10 +362,10 @@ namespace web_scraper.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("web_scraper.Data.Product", b =>
+            modelBuilder.Entity("web_scraper.Data.Tv", b =>
                 {
                     b.HasOne("web_scraper.Data.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany("Tv")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
