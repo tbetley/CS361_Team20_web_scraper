@@ -12,7 +12,7 @@ namespace web_scraper.Scraper
         public static List<Product> SearchByCategory(Category searchCategory)
         {
             List<Product> list = new List<Product>();
-            int idCounter = 0;
+            int idCounter = 10;
             foreach (String url in searchCategory.Urls)
             {
                 for(int i = 0; i < 3; i++)
@@ -28,7 +28,7 @@ namespace web_scraper.Scraper
                         SiteUrl = url
                     });
 
-                    idCounter++;
+                    idCounter--;
                 }
 
             }

@@ -6,13 +6,16 @@
 }
 
 
-<form asp-controller="Product" asp-action="List" method="get">
-    <label>Select a category:</label>
+    <form asp-controller="Product" asp-action="List" method="get">
+        <label>Select a category:</label>
 
-    @Html.DropDownListFor(m => m.categorySelected, Model.CategoryListItems, null, new { @class = "form-control"})
+        @Html.DropDownListFor(m => m.categorychosen, Model.CategoryListItems, null, new { @class = "form-control" })
+        <label>Sort By:</label>
+        @Html.DropDownListFor(m => m.filterSelected, Model.filterString, null, new { @class = "form-control" })
+        <button type="submit">Go</button>
+    </form>
 
-    <button type="submit">Go</button>
-</form>
+
 
 <br />
 
@@ -24,6 +27,8 @@
         <th>Manufacturer</th>
         <th>Url</th>
     </tr>
+
+
     @foreach (var product in Model.Products)
     {
         <tr>

@@ -22,17 +22,17 @@ namespace web_scraper.Data
                 new Category{CategoryId=2, Name="Laptops", Urls =
                     new List<String>()
                         {
-                            "computers.com",
-                            "pineapple.com",
-                            "bugdetelectronics.com"
+                            "latops.com",
+                            "latops2.com",
+                            "latops3.com"
                         }
                     },
                 new Category{CategoryId=3, Name="Desktops", Urls =
                     new List<String>()
                         {
-                            "computers.com",
-                            "asuspect.com",
-                            "pineapple.com"
+                            "desktop1.com",
+                            "desktop2.com",
+                            "desktop3.com"
                         }
                     }
             };

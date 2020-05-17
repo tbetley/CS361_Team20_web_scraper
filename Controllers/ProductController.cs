@@ -20,13 +20,16 @@ namespace web_scraper.Controllers
 
         public ProductController(ICategoryRepository categoryRepository)
         {
+            IEnumerable<string> filterStrings = new List<string> { "Name", "Model", "Price", "Manufactuer","URL" };
             _categoryRepository = categoryRepository;
             ViewModel = new ProductListViewModel();
             //gets hard-coded category list to populate drop-down
             ViewModel.CategoryListItems = getCategoryListItems(_categoryRepository.allCategories);
             //empty list of products to be filled by scraper
             ViewModel.Products = new List<Product>();
-        }
+            ViewModel.filterString = getFilterItems( filterStrings);
+            
+    }
 
         /**
          * handles GET requests to the List page, optionally with 'category' parameter from hmtl option element
@@ -34,11 +37,20 @@ namespace web_scraper.Controllers
          * */
         public ViewResult List(ProductListViewModel model)
         {
-            if (!String.IsNullOrEmpty(model.categorySelected))
+            if (!String.IsNullOrEmpty(model.categorychosen))
             {
-                if(Int32.TryParse(model.categorySelected, out int id))
+                if(Int32.TryParse(model.categorychosen, out int id))
                 {
+                   
                     ViewModel.Products = Scraper.Scraper.SearchByCategory(_categoryRepository.getCategoryById(id));
+                    if (model.filterSelected == "Price")
+                        ViewModel.Products = ViewModel.Products.OrderBy(o => o.Price);
+                    if (model.filterSelected == "Name")
+                        ViewModel.Products = ViewModel.Products.OrderBy(o => o.Name);
+                    if (model.filterSelected == "Manufacturer")
+                        ViewModel.Products = ViewModel.Products.OrderBy(o => o.Model);
+                    if (model.filterSelected == "URL")
+                        ViewModel.Products = ViewModel.Products.OrderBy(o => o.SiteUrl);
                 }
                 else
                 {
@@ -46,7 +58,10 @@ namespace web_scraper.Controllers
                 }
 
             }
-            
+
+  
+
+
             return View(ViewModel);
         }
 
@@ -64,6 +79,22 @@ namespace web_scraper.Controllers
                 {
                     Value = cat.CategoryId.ToString(),
                     Text = cat.Name
+                });
+            }
+
+            return selectList;
+        }
+
+        private IEnumerable<SelectListItem> getFilterItems(IEnumerable<string> filterList)
+        {
+            List<SelectListItem> selectList = new List<SelectListItem>();
+
+            foreach (string cat in filterList)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = cat,
+                    Text = cat
                 });
             }
 
