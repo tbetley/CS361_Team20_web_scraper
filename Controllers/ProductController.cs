@@ -35,7 +35,7 @@ namespace web_scraper.Controllers
          * handles GET requests to the List page, optionally with 'category' parameter from hmtl option element
          * 'category' is passed as a string but it actually represents an integer category ID
          * */
-        public ViewResult List(ProductListViewModel model)
+        public ViewResult List(ProductListViewModel model, string searchString)
         {
             if (!String.IsNullOrEmpty(model.categorychosen))
             {
@@ -58,8 +58,14 @@ namespace web_scraper.Controllers
                 }
 
             }
+            if (!String.IsNullOrEmpty(model.searchString))
+            {
+                ViewModel.Products = Scraper.Scraper.SearchByCategory(_categoryRepository.getCategoryById(1));
+                ViewModel.Products = ViewModel.Products.Where(s => s.Name.Contains(searchString));
+                
+                return View(ViewModel);
+            }
 
-  
 
 
             return View(ViewModel);
