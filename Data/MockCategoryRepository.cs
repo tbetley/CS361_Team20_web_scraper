@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using web_scraper.Models;
+using web_scraper.Scraper;
 
 namespace web_scraper.Data
 {
@@ -11,30 +12,32 @@ namespace web_scraper.Data
         public IEnumerable<Category> allCategories =>
             new List<Category>
             {
-                new Category{CategoryId=1, Name="TVs", Urls =
-                    new List<String>()
+                new Category{CategoryId=1, Name="TVs", sites =
+                    new List<ISiteScraper>()
                         {
-                            "bigtvs.com",
-                            "bettertvs.com",
-                            "uglytvs.com"
+                            new BestBuyScraper("http://bestbuy.com/site/tvs/all-flat-screen-tvs/abcat0101001.c?id=abcat0101001"),
                         }
                     },
-                new Category{CategoryId=2, Name="Laptops", Urls =
-                    new List<String>()
+                new Category{CategoryId=2, Name="Laptops", sites =
+                    new List<ISiteScraper>()
                         {
-                            "latops.com",
-                            "latops2.com",
-                            "latops3.com"
+                            new DellDealsScraper("http://deals.dell.com/en-us/category/laptops"),
+                            new AcerStoreScraper("https://store.acer.com/en-us/laptops?product_list_limit=25"),
                         }
                     },
-                new Category{CategoryId=3, Name="Desktops", Urls =
-                    new List<String>()
+                new Category{CategoryId=3, Name="Desktops", sites =
+                    new List<ISiteScraper>()
                         {
-                            "desktop1.com",
-                            "desktop2.com",
-                            "desktop3.com"
+                            new DellDealsScraper("http://deals.dell.com/en-us/category/desktops"),
+                            new AcerStoreScraper("https://store.acer.com/en-us/desktops?product_list_limit=25"),
                         }
+                    },
+                new Category{CategoryId=4, Name="Barbells", sites =
+                    new List<ISiteScraper>()
+                    {
+                        new AmericanBarbellScraper("https://americanbarbell.com/collections/olympic-bars"),
                     }
+                }
             };
 
         public Category getCategoryById(int id)
