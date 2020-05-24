@@ -11,6 +11,7 @@ namespace web_scraper.Scraper
     /**
      * Has been tested against:
      * http://bestbuy.com/site/tvs/all-flat-screen-tvs/abcat0101001.c?id=abcat0101001
+     * http://www.bestbuy.com/site/laptop-computers/all-laptops/pcmcat138500050001.c?id=pcmcat138500050001
      * */
     public class BestBuyScraper : ISiteScraper
     {
@@ -36,9 +37,10 @@ namespace web_scraper.Scraper
 
                 HtmlNode nameDivNode = node.SelectSingleNode(".//h4[contains(@class, 'sku-header')]");
                 HtmlNode nameNode = nameDivNode.SelectSingleNode("./a");
-                newProduct.Name = nameDivNode.InnerText;
-
-                newProduct.Brand = "I dunno";
+                //products end up with names like "Brand - Name - More - Details"
+                String fullTitle = System.Net.WebUtility.HtmlDecode(nameDivNode.InnerText);
+                newProduct.Name = fullTitle.Replace("New!", "");
+                newProduct.Brand = fullTitle.Split(" - ")[0].Replace("New!", "");
 
                 HtmlNode totalPriceNode = node.SelectSingleNode(".//div[contains(@class, 'priceView-hero-price') and contains(@class, 'priceView-customer-price')]");
                 HtmlNode priceNode = totalPriceNode.SelectSingleNode(".//span");

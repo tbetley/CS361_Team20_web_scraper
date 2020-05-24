@@ -22,14 +22,22 @@ namespace web_scraper.Data
                     new List<ISiteScraper>()
                         {
                             new DellDealsScraper("http://deals.dell.com/en-us/category/laptops"),
+                            new AcerStoreScraper("https://store.acer.com/en-us/laptops?product_list_limit=25"),
                         }
                     },
                 new Category{CategoryId=3, Name="Desktops", sites =
                     new List<ISiteScraper>()
                         {
                             new DellDealsScraper("http://deals.dell.com/en-us/category/desktops"),
+                            new AcerStoreScraper("https://store.acer.com/en-us/desktops?product_list_limit=25"),
                         }
+                    },
+                new Category{CategoryId=4, Name="Barbells", sites =
+                    new List<ISiteScraper>()
+                    {
+                        new AmericanBarbellScraper("https://americanbarbell.com/collections/olympic-bars"),
                     }
+                }
             };
 
         public Category getCategoryById(int id)
