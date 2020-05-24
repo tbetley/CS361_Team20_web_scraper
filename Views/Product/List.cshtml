@@ -9,9 +9,18 @@
 <form asp-controller="Product" asp-action="List" method="get">
     <label>Select a category:</label>
 
-    @Html.DropDownListFor(m => m.categorySelected, Model.CategoryListItems, null, new { @class = "form-control"})
-
+    @Html.DropDownListFor(m => m.categorychosen, Model.CategoryListItems, null, new { @class = "form-control" })
+    <label>Sort By:</label>
+    @Html.DropDownListFor(m => m.filterSelected, Model.filterString, null, new { @class = "form-control" })
     <button type="submit">Go</button>
+</form>
+
+<form asp-controller="Product" asp-action="List" method="get">
+
+    <p>
+        Find by name: @Html.TextBoxFor(m => m.searchString, new { @class = "form-control" })
+        <input type="submit" value="Search" />
+    </p>
 </form>
 
 <br />
@@ -24,6 +33,8 @@
         <th>Manufacturer</th>
         <th>Url</th>
     </tr>
+
+
     @foreach (var product in Model.Products)
     {
         <tr>

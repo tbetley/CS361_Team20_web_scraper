@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +28,6 @@ namespace web_scraper.Scraper
                         ImageUrl = String.Format("{0}/pic.png", url),
                         SiteUrl = url
                     });
-
                     idCounter++;
                 }
                 */
