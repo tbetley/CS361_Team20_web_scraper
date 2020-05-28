@@ -17,10 +17,39 @@ namespace web_scraper.Controllers
         private readonly ICategoryRepository _categoryRepository;
 
         public ProductListViewModel ViewModel;
+        public async Task<IActionResult> Index(string sortOrder)
+        {
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "name_asc" : "Name";
+            ViewData["ModelSortParm"] = sortOrder == "Model" ? "model_asc" : "Model";
+            ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_asc" : "Price";
+            ViewData["ManufacturerSortParm"] = sortOrder == "Manufacturer" ? "manu_asc" : "Manufacturer";
+            ViewData["UrlSortParm"] = sortOrder == "Url" ? "url_asc" : "Url";
+
+            switch (sortOrder)
+            {
+                case "name_asc":
+                    ViewModel.Products = ViewModel.Products.OrderByDescending(o => o.Name);
+                    break;
+                case "model_asc":
+                    ViewModel.Products = ViewModel.Products.OrderByDescending(o => o.Model);
+                    break;
+                case "price_asc":
+                    ViewModel.Products = ViewModel.Products.OrderByDescending(o => o.Price);
+                    break;
+                case "url_asc":
+                    ViewModel.Products = ViewModel.Products.OrderByDescending(o => o.SiteUrl);
+                    break;
+                default:
+                    ViewModel.Products = ViewModel.Products.OrderBy(o => o.Name);
+                    break;
+            }
+            return View(ViewModel);
+        }
+
 
         public ProductController(ICategoryRepository categoryRepository)
         {
-            IEnumerable<string> filterStrings = new List<string> { "Name", "Model", "Price", "Manufactuer","URL" };
+            IEnumerable<string> filterStrings = new List<string> { "Name", "Model", "Price", "Manufacturer","URL" };
             _categoryRepository = categoryRepository;
             ViewModel = new ProductListViewModel();
             //gets hard-coded category list to populate drop-down

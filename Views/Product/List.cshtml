@@ -25,13 +25,13 @@
 
 <br />
 
-<table class="table">
+<table cl
     <tr>
-        <th>Name</th>
-        <th>Model</th>
-        <th>Price</th>
-        <th>Manufacturer</th>
-        <th>Url</th>
+        <th><a asp-action="List" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a></th>
+        <th><a asp-action="List" asp-route-sortOrder="@ViewData["ModelSortParm"]">@Html.DisplayNameFor(model => model.Model)</a></th>
+        <th><a asp-action="List" asp-route-sortOrder="@ViewData["PriceSortParm"]">@Html.DisplayNameFor(model => model.Price)</a></th>
+        <th><a asp-action="List" asp-route-sortOrder="@ViewData["ManufacturerSortParm"]">@Html.DisplayNameFor(model => model.Manufacturer)</a></th>
+        <th><a asp-action="List" asp-route-sortOrder="@ViewData["UrlSortParm"]">@Html.DisplayNameFor(model => model.URL)</a></th>
     </tr>
 
 

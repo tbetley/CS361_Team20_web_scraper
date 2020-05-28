@@ -18,5 +18,10 @@ namespace web_scraper.ViewModels
         public IEnumerable<SelectListItem> filterString { get; set; }
         public string filterSelected { get; set; }
         public string searchString { get; set; }
+        public string Name { get; set; }
+        public string Price { get; set; }
+        public string Model { get; set; }
+        public string Manufacturer { get; set; }
+        public string URL { get; set; }
     }
 }
