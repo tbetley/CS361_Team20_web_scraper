@@ -30,6 +30,7 @@ namespace web_scraper.Data
                         {
                             new DellDealsScraper("http://deals.dell.com/en-us/category/desktops"),
                             new AcerStoreScraper("https://store.acer.com/en-us/desktops?product_list_limit=25"),
+                            //new NewEggScraper("https://www.newegg.com/p/pl?N=100019096%204814")
                         }
                     },
                 new Category{CategoryId=4, Name="Barbells", sites =

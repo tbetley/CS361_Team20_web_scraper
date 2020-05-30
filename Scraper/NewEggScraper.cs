@@ -10,14 +10,13 @@ namespace web_scraper.Scraper
 {
     /**
      * has been tested against:
-     * https://store.acer.com/en-us/laptops?product_list_limit=25
-     * https://store.acer.com/en-us/desktops?product_list_limit=25
+     * https://www.newegg.com/p/pl?N=100019096%204814
      * */
-    public class AcerStoreScraper : ISiteScraper
+    public class NewEggScraper : ISiteScraper
     {
         private String url;
 
-        public AcerStoreScraper(String url)
+        public NewEggScraper(String url)
         {
             this.url = url;
         }
@@ -28,27 +27,47 @@ namespace web_scraper.Scraper
 
             var htmlDoc = web.Load(html);
 
-            //one div with class 'product-item-details' per product
+            //one div with class 'item-container' per product
 
-            HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//div[contains(@class, 'product-item-details')]");
+            HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//div[contains(@class, 'item-container')]");
 
-            //generate "unique" (for this search) product ids with iterator
-            int iterator = 0;
             foreach (HtmlNode node in nodes)
             {
                 Product newProduct = new Product();
-                newProduct.ProductID = iterator;
 
-                HtmlNode linkNode = node.SelectSingleNode(".//a[contains(@class, 'product-item-link')]");
-                newProduct.Name = linkNode.InnerText;
+                HtmlNode linkNode = node.SelectSingleNode(".//a[contains(@class, 'item-img')]");
                 newProduct.SiteUrl = linkNode.GetAttributeValue("href", url);
 
+                var htmlDetails = newProduct.SiteUrl;
+                var htmlDetailsDoc = web.Load(htmlDetails);
+
+                HtmlNode specsNode = htmlDetailsDoc.DocumentNode.SelectSingleNode(".//div[contains(@id, 'Specs')]");
+
+                if(specsNode != null)
+                {
+                    HtmlNode brandNode = specsNode.SelectSingleNode(".//dd");
+                    newProduct.Brand = brandNode.InnerText;
+
+                    HtmlNode nameNode = specsNode.SelectNodes(".//dd")[2];
+                    newProduct.Brand = nameNode.InnerText;
+
+
+                }
+                else
+                {
+                    newProduct.Name = "foo";
+                    newProduct.Brand = "nah";
+                }
+
+                newProduct.Model = "a";
+                newProduct.Price = 2.4M;
+                /*
                 newProduct.Brand = "Acer";
                 HtmlNode partNumberNode = node.SelectSingleNode(".//div[contains(@class, 'product-code')]");
                 HtmlNode modelNode = partNumberNode.SelectSingleNode(".//span");
                 newProduct.Model = modelNode.InnerText;
                 HtmlNode priceNode = node.SelectSingleNode(".//span[@data-price-type='finalPrice']");
-                if(priceNode != null)
+                if (priceNode != null)
                 {
                     newProduct.Price = Decimal.Parse(priceNode.InnerText, NumberStyles.AllowCurrencySymbol | NumberStyles.Number);
                 }
@@ -56,9 +75,9 @@ namespace web_scraper.Scraper
                 {
                     newProduct.Price = 0.0M;
                 }
+                */
 
                 list.Add(newProduct);
-                iterator++;
             }
         }
     }
