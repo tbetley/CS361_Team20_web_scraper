@@ -15,17 +15,17 @@
     <button type="submit">Go</button>
 </form>
 
-<form asp-controller="Product" asp-action="List" method="get">
+<select id="selectInput">
+    <option value="name">Name</option>
+    <option value="model">Model</option>
+    <option value="manufacturer">Manufacturer</option>
+</select>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a search"/>
 
-    <p>
-        Find by name: @Html.TextBoxFor(m => m.searchString, new { @class = "form-control" })
-        <input type="submit" value="Search" />
-    </p>
-</form>
+<br/>
+<br/>
 
-<br />
-
-<table class="table">
+<table class="table" id="listTable">
     <tr>
         <th>Name</th>
         <th>Model</th>
@@ -46,3 +46,30 @@
         </tr>
     }
 </table>
+
+<script>
+    function myFunction() {
+        var input, columnPick, colNum, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        columnPick = document.getElementById("selectInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("listTable");
+        tr = table.getElementsByTagName("tr");
+
+        if (columnPick.value == "name") { colNum = 0 }
+        if (columnPick.value == "model") { colNum = 1 }
+        if (columnPick.value == "manufacturer") { colNum = 3 }
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[colNum];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

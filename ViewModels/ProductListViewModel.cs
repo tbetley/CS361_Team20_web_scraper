@@ -18,5 +18,7 @@ namespace web_scraper.ViewModels
         public IEnumerable<SelectListItem> filterString { get; set; }
         public string filterSelected { get; set; }
         public string searchString { get; set; }
+
+        
     }
 }
