@@ -48,9 +48,15 @@ namespace web_scraper.Scraper
                 HtmlNode modelNode = partNumberNode.SelectSingleNode(".//span");
                 newProduct.Model = modelNode.InnerText;
 
-                HtmlNode priceSpan = node.SelectSingleNode(".//span[contains(@class, 'weee') and contains(@class, 'price-final_price')]");
-                HtmlNode priceNode = priceSpan.SelectSingleNode(".//span[contains(@class, 'price')]");
-                newProduct.Price = Decimal.Parse(priceNode.InnerText, NumberStyles.AllowCurrencySymbol | NumberStyles.Number);
+                HtmlNode priceNode = node.SelectSingleNode(".//span[@data-price-type='finalPrice']");
+                if(priceNode != null)
+                {
+                    newProduct.Price = Decimal.Parse(priceNode.InnerText, NumberStyles.AllowCurrencySymbol | NumberStyles.Number);
+                }
+                else
+                {
+                    newProduct.Price = 0.0M;
+                }
 
                 list.Add(newProduct);
                 iterator++;
