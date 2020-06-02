@@ -47,10 +47,12 @@ namespace web_scraper.Controllers
                         ViewModel.Products = ViewModel.Products.OrderBy(o => o.Price);
                     if (model.filterSelected == "Name")
                         ViewModel.Products = ViewModel.Products.OrderBy(o => o.Name);
-                    if (model.filterSelected == "Manufacturer")
-                        ViewModel.Products = ViewModel.Products.OrderBy(o => o.Model);
+                    if (model.filterSelected == "Manufactuer")
+                        ViewModel.Products = ViewModel.Products.OrderBy(o => o.Brand);
                     if (model.filterSelected == "URL")
                         ViewModel.Products = ViewModel.Products.OrderBy(o => o.SiteUrl);
+                    if (model.filterSelected == "Model")
+                        ViewModel.Products = ViewModel.Products.OrderBy(o => o.Model);
                 }
                 else
                 {
