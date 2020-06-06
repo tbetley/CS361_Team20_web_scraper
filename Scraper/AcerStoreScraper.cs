@@ -47,6 +47,7 @@ namespace web_scraper.Scraper
                 HtmlNode partNumberNode = node.SelectSingleNode(".//div[contains(@class, 'product-code')]");
                 HtmlNode modelNode = partNumberNode.SelectSingleNode(".//span");
                 newProduct.Model = modelNode.InnerText;
+
                 HtmlNode priceNode = node.SelectSingleNode(".//span[@data-price-type='finalPrice']");
                 if(priceNode != null)
                 {

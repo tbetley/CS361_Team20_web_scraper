@@ -15,6 +15,7 @@ namespace web_scraper.Data
                 new Category{CategoryId=1, Name="TVs", sites =
                     new List<ISiteScraper>()
                         {
+                            new MicroCenterScraper("https://www.microcenter.com/category/4294966895,4294817806/led-tvs"),
                             new BestBuyScraper("http://bestbuy.com/site/tvs/all-flat-screen-tvs/abcat0101001.c?id=abcat0101001"),
                         }
                     },
@@ -22,7 +23,8 @@ namespace web_scraper.Data
                     new List<ISiteScraper>()
                         {
                             new DellDealsScraper("http://deals.dell.com/en-us/category/laptops"),
-                            new AcerStoreScraper("https://store.acer.com/en-us/laptops?product_list_limit=25"),
+                           new AcerStoreScraper("https://store.acer.com/en-us/laptops?product_list_limit=25"),
+                            new MicroCenterScraper("https://www.microcenter.com/category/4294967288/all-laptops-notebooks")
                         }
                     },
                 new Category{CategoryId=3, Name="Desktops", sites =
@@ -30,7 +32,7 @@ namespace web_scraper.Data
                         {
                             new DellDealsScraper("http://deals.dell.com/en-us/category/desktops"),
                             new AcerStoreScraper("https://store.acer.com/en-us/desktops?product_list_limit=25"),
-                            //new NewEggScraper("https://www.newegg.com/p/pl?N=100019096%204814")
+                            new MicroCenterScraper("https://www.microcenter.com/category/4294967292/all-desktops")
                         }
                     },
                 new Category{CategoryId=4, Name="Barbells", sites =
