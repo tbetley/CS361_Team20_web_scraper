@@ -41,13 +41,23 @@ namespace web_scraper.Scraper
 
                 HtmlNode nameDivNode = node.SelectSingleNode(".//div[contains(@class, 'title-wrapper')]");
                 HtmlNode nameNode = nameDivNode.SelectSingleNode("./a");
-                newProduct.Name = nameDivNode.InnerText;
+                newProduct.Name = nameDivNode.InnerText.Replace("New ", "");
 
                 newProduct.Brand = "Dell";
 
                 HtmlNode totalPriceNode = node.SelectSingleNode(".//div[contains(@class, 'total-price')]");
                 HtmlNode priceNode = totalPriceNode.SelectNodes(".//span")[1];
-                newProduct.Model = "nope";
+
+                String[] modelWords = newProduct.Name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (modelWords.Length >= 3)
+                {
+                    newProduct.Model = modelWords[1] + " " + modelWords[2];
+                }
+                else
+                {
+                    newProduct.Model = "n/a";
+                }
+
                 newProduct.Price = Decimal.Parse(priceNode.InnerText, NumberStyles.AllowCurrencySymbol | NumberStyles.Number);
 
                 String detailsUrl = "http://deals.dell.com";
